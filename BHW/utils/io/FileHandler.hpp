@@ -43,4 +43,6 @@ namespace BHW
     bool FileExtensionIs(const std::string& path, const std::string& extension);
 
     std::string CombinePaths(const std::string& path1, const std::string& path2);
+
+    std::string GetRelativePath(const std::string& path, const std::string& relativeTo);
 }

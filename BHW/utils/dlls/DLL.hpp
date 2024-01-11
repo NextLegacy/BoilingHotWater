@@ -1,32 +1,33 @@
 #pragma once
 
-#define BHW_DLL_EXPORT __declspec(dllexport)
-#define BHW_DLL_IMPORT __declspec(dllimport)
-
 #include <Windows.h>
+#include <string>
 
 namespace BHW
 {
     class DLL
     {
     public:
-        DLL(const char* path)
-        {
-            m_handle = LoadLibraryA(path);
-        }
+        DLL(const std::string& path = "");
 
-        ~DLL()
-        {
-            FreeLibrary(m_handle);
-        }
+        ~DLL();
+
+        void Load  ();
+        void Unload();
 
         template<typename TFunction>
-        TFunction GetFunction(const char* name)
+        TFunction GetFunction(const std::string& name)
         {
-            return reinterpret_cast<TFunction>(GetProcAddress(m_handle, name));
+            return reinterpret_cast<TFunction>(GetProcAddress(m_handle, name.c_str()));
         }
 
+        inline const std::string& GetPath() const { return m_path; }
+        inline void SetPath(const std::string& path) { m_path = path; }
+
+        inline bool IsLoaded() const { return m_handle != nullptr && m_handle != INVALID_HANDLE_VALUE; }
+
     private:
-        HMODULE m_handle;
+        std::string m_path  ;
+        HMODULE     m_handle;
     };
 }

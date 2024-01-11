@@ -177,4 +177,9 @@ namespace BHW
     {
         return (std::filesystem::path(path1) / std::filesystem::path(path2)).string();
     }
+
+    std::string GetRelativePath(const std::string& path, const std::string& relativeTo)
+    {
+        return std::filesystem::relative(path, relativeTo).string();
+    }
 }
