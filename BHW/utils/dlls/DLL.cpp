@@ -1,5 +1,7 @@
 #include "BHW/utils/dlls/DLL.hpp"
 
+#include "BHW/utils/console/Console.hpp"
+
 namespace BHW
 {
     DLL::DLL(const std::string& path) : m_path(path), m_handle(nullptr)
@@ -13,8 +15,9 @@ namespace BHW
 
     void DLL::Load()
     {
-        if (m_handle)
-            return;
+        //BHW::Console::WriteLine("Loading DLL: " + m_path);
+
+        if (m_handle) return;
 
         m_handle = LoadLibraryA(m_path.c_str());
     }
