@@ -123,7 +123,7 @@ namespace BHW
             CoUninitialize();
         }
 
-        return std::string(folderPath.begin(), folderPath.end());
+        return std::string(folderPath.begin(), folderPath.end() - 1);
 #else
         return "";
 #endif
@@ -155,7 +155,15 @@ namespace BHW
     {
         char buffer[MAX_PATH];
         GetModuleFileNameA(NULL, buffer, sizeof(buffer));
-        return std::filesystem::path(buffer).parent_path().string();
+        std::string path = std::filesystem::path(buffer).parent_path().string();
+
+        for (int i = 0; i < path.size(); i++)
+        {
+            if (path[i] == '\\')
+                path[i] = '/';
+        }
+
+        return path;
     }
 
     std::string GetAbsolutePath(const std::string& path)
@@ -172,9 +180,9 @@ namespace BHW
     {
         return std::filesystem::path(path).extension() == extension || std::filesystem::path(path).filename() == extension;
     }
-
-    std::string CombinePaths(const std::string& path1, const std::string& path2)
+    
+    std::string GetRelativePath(const std::string& path, const std::string& relativeTo)
     {
-        return (std::filesystem::path(path1) / std::filesystem::path(path2)).string();
+        return std::filesystem::relative(path, relativeTo).string();
     }
 }

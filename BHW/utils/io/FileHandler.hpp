@@ -42,5 +42,20 @@ namespace BHW
 
     bool FileExtensionIs(const std::string& path, const std::string& extension);
 
-    std::string CombinePaths(const std::string& paths, ...);
+    template<typename ...Paths>
+    std::string CombinePaths(const std::string& path, Paths... paths)
+    {
+        std::string result = path;
+
+        std::vector<std::string> pathsVector = { paths... };
+
+        for (const std::string& path : pathsVector)
+        {
+            result += "\\" + path;
+        }
+
+        return result;
+    }
+
+    std::string GetRelativePath(const std::string& path, const std::string& relativeTo);
 }
