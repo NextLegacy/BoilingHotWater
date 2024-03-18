@@ -49,8 +49,10 @@ This library uses [CMake](https://cmake.org/) as its build system.
 
 To build and Install the library, you can run the following commands:
 
-```bash	
-cmake --build build --target ALL_BUILD --config Release
+```bash
+# Explicitly specify a build directory.
+cmake -B build
+# Build the library in Release mode. You will find the built library in the `install` directory.
 cmake --build build --target INSTALL --config Release
 ```
 
@@ -59,7 +61,7 @@ afterwards, you can link the library to your project by adding the following to 
 ```cmake
 list(APPEND CMAKE_PREFIX_PATH path/to/BoilingHotWater/install)
 find_package(BHW REQUIRED)
-target_link_libraries(<your-target> PRIVATE BHW::BHW)
+target_link_libraries(<your-target> PUBLIC BHW::BHW)
 ```
 
 ## License

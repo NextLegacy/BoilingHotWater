@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28.1)
+cmake_minimum_required(VERSION 3.20.42)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -23,6 +23,7 @@ install(
     DIRECTORY BHW
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     PATTERN "CMakeLists.txt" EXCLUDE
+    PATTERN "*.cpp" EXCLUDE
 )
 
 install(

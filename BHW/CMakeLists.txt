@@ -1,7 +1,7 @@
-file(GLOB_RECURSE BHWSources *.cpp)
-file(GLOB_RECURSE BHWHeaders *.hpp)
+file(GLOB_RECURSE BHWSources ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+file(GLOB_RECURSE BHWHeaders ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
 
-add_library(BHW STATIC ${BHWSources} ${BHWHeaders})
+add_library(BHW ${BHWSources} ${BHWHeaders})
 
 target_include_directories(BHW PUBLIC 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
