@@ -3,6 +3,8 @@
 #include "BHW/utils/reflection/Type.hpp"
 #include "BHW/utils/reflection/TypeInfo.hpp"
 
+#include <source_location>
+
 // TODO: move this to a separate file
 #define BHW_CONCAT(a, b) a##b
 
@@ -11,7 +13,7 @@
     { \
         namespace __reflection \
         { \
-            inline static const TypeInfo& BHW_CONCAT(__, var_name) = MakeTypeInfo<class_name, __VA_ARGS__>(); \
+            inline static const TypeInfo& BHW_CONCAT(__, var_name) = MakeTypeInfo<class_name, __VA_ARGS__>(std::source_location::current().file_name()); \
         } \
         template <> \
         inline constexpr auto Cast<TypeHash<class_name>()>(void* ptr) \
@@ -27,6 +29,11 @@
         inline constexpr bool IsRegistered<class_name>() \
         { \
             return true; \
+        } \
+        template <> \
+        inline constexpr const std::string_view& GetSourceLocation<TypeHash<class_name>()>() \
+        { \
+            return __reflection::BHW_CONCAT(__, var_name).SourceLocation; \
         } \
     }
 

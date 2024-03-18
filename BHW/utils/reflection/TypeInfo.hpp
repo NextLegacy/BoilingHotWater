@@ -11,40 +11,41 @@ namespace BHW
     namespace __reflection
     {
         template <typename TClass, typename ...TInheritedClasses>
-        constexpr const TypeInfo& MakeTypeInfo();
+        constexpr const TypeInfo& MakeTypeInfo(const std::string_view& sourceLocation);
     }
 
     class TypeInfo
     {
     public:
-        const std::string_view Name;
-        const uint64_t         Hash;
+        const Type Type;
+        
+        const std::string_view& SourceLocation;
 
         const std::unordered_map<uint64_t, const TypeInfo&> InheritedClasses;
               std::unordered_map<uint64_t, const TypeInfo&> DerivedClasses  ;
 
     private:
         TypeInfo(
-            std::string_view                                    name            , 
-            uint64_t                                            hash            , 
+            const BHW::Type& type,
+            const std::string_view& sourceLocation,
             const std::unordered_map<uint64_t, const TypeInfo&> inheritedClasses
-        ) : Name(name), Hash(hash), InheritedClasses(inheritedClasses), DerivedClasses() 
+        ) : Type(type), SourceLocation(sourceLocation), InheritedClasses(inheritedClasses), DerivedClasses()
         {
         }
 
         template <typename TClass, typename ...TInheritedClasses>
-        friend constexpr const TypeInfo& __reflection::MakeTypeInfo<TClass, TInheritedClasses...>();
+        friend constexpr const TypeInfo& __reflection::MakeTypeInfo<TClass, TInheritedClasses...>(const std::string_view& sourceLocation);
     };
 
     namespace __reflection
     {
         template <typename TClass, typename ...TInheritedClasses>
-        constexpr const TypeInfo& MakeTypeInfo()
+        constexpr const TypeInfo& MakeTypeInfo(const std::string_view& sourceLocation)
         {
             const TypeInfo& typeInfo = *(new TypeInfo
             (
-                TypeName<TClass>(),
-                TypeHash<TClass>(), 
+                TypeOf<TClass>(),
+                sourceLocation,
                 { { TypeHash<TInheritedClasses>(), GetTypeInfo<TypeHash<TInheritedClasses>()>() }... }
             ));
 
@@ -58,7 +59,10 @@ namespace BHW
     constexpr auto Cast(void* ptr);
 
     template <uint64_t THash>
-    inline constexpr const TypeInfo& GetTypeInfo();
+    constexpr const TypeInfo& GetTypeInfo();
+
+    template <uint64_t THash>
+    constexpr const std::string_view& GetSourceLocation();
 
     template <typename TClass> 
     inline constexpr bool IsRegistered() { return false; }
@@ -71,11 +75,9 @@ namespace BHW
         return GetTypeInfo<TypeHash<TClass>()>();
     }
 
-/*
-    template <typename TType>
-    inline constexpr auto Cast(void* ptr)
+    template <typename TClass>
+    inline constexpr const std::string_view& GetSourceLocation()
     {
-        return Cast<TypeHash<TType>()>(ptr);
+        return GetSourceLocation<TypeHash<TClass>()>();
     }
-*/
 }

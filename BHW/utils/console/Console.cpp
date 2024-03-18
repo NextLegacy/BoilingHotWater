@@ -45,7 +45,7 @@ namespace BHW
 
     void Console::WriteLine(const std::string& message)
     {
-        std::cout << message << std::endl;
+        std::cout << message << "\n";
     }
 
     void Console::Pause()

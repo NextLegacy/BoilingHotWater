@@ -6,15 +6,15 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/install)
 
-project(BHW VERSION 0.0.1 LANGUAGES CXX)
+project(BoilingHotWater VERSION 0.0.1 LANGUAGES CXX)
 
 add_subdirectory(BHW)
 
 include(GNUInstallDirs)
 include(CPack)
 
-install(TARGETS BHW
-    EXPORT BHW
+install(TARGETS BoilingHotWater
+    EXPORT BoilingHotWater
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
@@ -27,21 +27,21 @@ install(
 )
 
 install(
-    EXPORT BHW
-    NAMESPACE BHW::
-    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/BHW
-    FILE BHWConfig.cmake
+    EXPORT BoilingHotWater
+    NAMESPACE BoilingHotWater::
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/BoilingHotWater
+    FILE BoilingHotWaterConfig.cmake
 )
 
 include(CMakePackageConfigHelpers)
 
 write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/BHWConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/BoilingHotWaterConfigVersion.cmake
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY AnyNewerVersion
 )
 
 install(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/BHWConfigVersion.cmake
-    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/BHW
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/BoilingHotWaterConfigVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/BoilingHotWater
 )
