@@ -14,6 +14,8 @@ Originally, I wrote this library for my game engine, [TeaPot](https://github.com
 
 ## Table of Contents
 - [BoilingHotWater](#boilinghotwater)
+  - [Pretty accurate representation of the disk utilization :)](#pretty-accurate-representation-of-the-disk-utilization-)
+  - [Abstract](#abstract)
   - [Table of Contents](#table-of-contents)
   - [Currently Supported Platforms](#currently-supported-platforms)
   - [Features](#features)
@@ -67,8 +69,8 @@ afterwards, you can link the library to your project by adding the following to 
 
 ```cmake
 list(APPEND CMAKE_PREFIX_PATH path/to/BoilingHotWater/install)
-find_package(BHW REQUIRED)
-target_link_libraries(<your-target> PUBLIC BHW::BHW)
+find_package(BoilingHotWater REQUIRED)
+target_link_libraries(<your-target> PUBLIC BoilingHotWater::BoilingHotWater)
 ```
 
 ## License

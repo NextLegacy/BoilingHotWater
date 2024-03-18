@@ -18,22 +18,6 @@ namespace BHW
 
         constexpr uint64_t Xoshiro256ss(uint64_t (&state)[4])
         {
-            /*
-            uint64_t* s = state;
-            uint64_t const result = s[0] + s[3];
-
-            uint64_t const t = s[1] << 17;
-
-            s[2] ^= s[0];
-            s[3] ^= s[1];
-            s[1] ^= s[2];
-            s[0] ^= s[3];
-
-            s[2] ^= t;
-
-            s[3] = (s[3] << 45) | (s[3] >> (64 - 45)); // rotl(s[3], 45);
-            */
-
             uint64_t const result = state[0] + state[3];
 
             uint64_t const t = state[1] << 17;
