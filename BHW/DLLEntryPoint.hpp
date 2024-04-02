@@ -1,13 +1,5 @@
 #pragma once
 
-#ifdef _WIN32
-
-#include <Windows.h>
-
-BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved);
-
-#endif
-
 namespace BHW
 {
     extern int ProcessAttach();
@@ -16,3 +8,11 @@ namespace BHW
     extern int ThreadAttach ();
     extern int ThreadDetach ();
 }
+
+#ifdef _WIN32
+
+#include <Windows.h>
+
+BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved);
+
+#endif

@@ -8,7 +8,8 @@ namespace BHW
     {
         unsigned long long result = 0xcbf29ce484222325; // FNV offset basis
 
-        for (char c : hash) {
+        for (char c : hash) 
+        {
             result ^= c;
             result *= 0x100000001b3ULL; // FNV prime
         }
