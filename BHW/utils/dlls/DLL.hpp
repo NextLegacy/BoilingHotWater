@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef _WIN32
+
 #include <Windows.h>
 #include <string>
 
@@ -31,3 +33,5 @@ namespace BHW
         HMODULE     m_handle;
     };
 }
+
+#endif

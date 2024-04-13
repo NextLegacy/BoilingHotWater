@@ -5,7 +5,7 @@
 
 namespace BHW
 {
-    const struct LoggedMessage
+    struct LoggedMessage
     {
         const std::chrono::system_clock::time_point timestamp;
 

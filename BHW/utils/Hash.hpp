@@ -4,7 +4,7 @@
 
 namespace BHW
 {
-    inline constexpr unsigned long long Hash(const std::string_view& hash)
+    inline constexpr size_t Hash(const std::string_view& hash)
     {
         unsigned long long result = 0xcbf29ce484222325; // FNV offset basis
 

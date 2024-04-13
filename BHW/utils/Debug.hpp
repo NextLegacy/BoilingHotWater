@@ -25,4 +25,4 @@ namespace BHW
 #define BHW_WARN(format, ...) BHW::Debug("[WARN ] [{}:{}]: " format, __FILE__, __LINE__, __VA_ARGS__)
 #define BHW_ERROR(format, ...) BHW::Debug("[ERROR] [{}:{}]: " format, __FILE__, __LINE__, __VA_ARGS__)
 
-#define BHW_ASSERT(condition, origin, format, ...) BHW::Assert(condition, "[ASSERT] [{}:{}]: " format, __FILE__, __LINE__, __VA_ARGS__)
+#define BHW_ASSERT(condition, origin, format, ...) BHW::Assert(condition, "[ASSERT] [{}:{}]: " format, __FILE__, __LINE__, ##__VA_ARGS__)

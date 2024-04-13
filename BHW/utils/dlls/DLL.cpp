@@ -1,5 +1,7 @@
 #include "BHW/utils/dlls/DLL.hpp"
 
+#ifdef _WIN32
+
 #include "BHW/utils/console/Console.hpp"
 
 namespace BHW
@@ -31,3 +33,5 @@ namespace BHW
         m_handle = nullptr;
     }
 }
+
+#endif

@@ -80,9 +80,9 @@ namespace BHW
         file.close();
     }
 
+#ifdef _WIN32
     std::string SelectFolder(const std::string& title, const std::string& defaultPath, HWND parent)
     {
-#ifdef _WIN32
 
         std::string folderPath;
         IFileOpenDialog* pfd;
@@ -124,10 +124,8 @@ namespace BHW
         }
 
         return std::string(folderPath.begin(), folderPath.end() - 1);
-#else
-        return "";
-#endif
     }
+#endif
 
     std::vector<std::string> GetFilesInFolder(const std::string& path, const std::string& extension)
     {
@@ -146,6 +144,7 @@ namespace BHW
         return files;
     }
     
+#ifdef _WIN32
     std::string GetCurrentPath()
     {
         return std::filesystem::current_path().string();
@@ -165,6 +164,7 @@ namespace BHW
 
         return path;
     }
+#endif
 
     std::string GetAbsolutePath(const std::string& path)
     {

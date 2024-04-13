@@ -30,12 +30,16 @@ namespace BHW
     void CreateFolder(const std::string& path);
     void CreateFile(const std::string& path);
 
+    #ifdef _WIN32
     std::string SelectFolder(const std::string& title, const std::string& defaultPath, HWND parent);
+    #endif
 
     std::vector<std::string> GetFilesInFolder(const std::string& path, const std::string& extension);
 
+#ifdef _WIN32
     std::string GetCurrentPath();
     std::string GetExecutablePath();
+#endif
 
     std::string GetAbsolutePath(const std::string& path);
     bool IsAbsolutePath(const std::string& path);
