@@ -29,4 +29,6 @@ namespace BHW
     };
 
     typedef Xoshiro256ss Random;
+
+    extern Random random;
 }

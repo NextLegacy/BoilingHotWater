@@ -16,4 +16,6 @@ namespace BHW
     void Xoshiro256ss::InitState() { m_seed.CreateState(m_state); }
     
     uint64_t Xoshiro256ss::operator()() { return PRNGAlgorithms::Xoshiro256ss(m_state); }
+
+    Random random = Random();
 }
