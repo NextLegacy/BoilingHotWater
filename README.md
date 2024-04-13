@@ -32,6 +32,7 @@ Feel free to grab code snippets or the whole library if you find it useful, but 
 - [X] Windows
 - [ ] Linux
 - [ ] MacOS
+- [X] Web (via Emscripten)
 
 ## Features
 
@@ -69,8 +70,11 @@ cmake -B build
 # Optionally, you can specify the install directory. By default this will be set to "/usr/local" on UNIX, and "<SystemDrive>/Program Files/<ProjectName>" on Windows
 cmake -B build -D CMAKE_INSTALL_PREFIX=PATH_TO_INSTALL_DIR
 
-# Build the library in Release mode. You will find the built library in the `install` directory.
+# Build the library in Release mode. The Library will be installed in the install directory.
 cmake --build build --target INSTALL --config Release
+
+# Use the custom target INSTALL_EMSCRIPTEN to install the library for web.
+cmake --build build --target INSTALL_EMSCRIPTEN
 ```
 
 afterwards, you can link the library to your project by adding the following to your `CMakeLists.txt`:
