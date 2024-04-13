@@ -80,7 +80,7 @@ namespace BHW
     }
 
     template <typename T>
-    inline constexpr uint64_t TypeHash()
+    inline constexpr size_t TypeHash()
     {
         return Hash(TypeName<T>());
     }

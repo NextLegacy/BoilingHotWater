@@ -7,22 +7,6 @@
 #include "BHW/utils/reflection/ReflectionDefinitions.hpp"
 
 BHW_REFLECT(bool              );
-BHW_REFLECT(char              );
-BHW_REFLECT(unsigned char     );
-BHW_REFLECT(short             );
-BHW_REFLECT(unsigned short    );
-BHW_REFLECT(int               );
-BHW_REFLECT(unsigned int      );
-BHW_REFLECT(long              );
-BHW_REFLECT(unsigned long     );
-BHW_REFLECT(long long         );
-BHW_REFLECT(unsigned long long);
-BHW_REFLECT(float             );
-BHW_REFLECT(double            );
-BHW_REFLECT(long double       );
-BHW_REFLECT(std::string       );
-BHW_REFLECT(std::string_view  );
-
 /*
 BHW_REFLECT(std::vector<bool              >);
 BHW_REFLECT(std::vector<char              >);

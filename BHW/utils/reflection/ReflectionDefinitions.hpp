@@ -13,31 +13,31 @@
     { \
         namespace __reflection \
         { \
-            inline static const TypeInfo& BHW_CONCAT(__, var_name) = MakeTypeInfo<class_name, __VA_ARGS__>(std::source_location::current().file_name()); \
+            inline static const TypeInfo& BHW_CONCAT(__, var_name) = MakeTypeInfo<class_name, ##__VA_ARGS__>(std::source_location::current().file_name()); \
         } \
         template <> \
-        inline constexpr auto Cast<TypeHash<class_name>()>(void* ptr) \
+        inline auto Cast<TypeHash<class_name>()>(void* ptr) \
         { \
             return static_cast<class_name*>(ptr); \
         } \
         template <> \
-        inline constexpr const TypeInfo& GetTypeInfo<TypeHash<class_name>()>() \
+        inline const TypeInfo& GetTypeInfo<TypeHash<class_name>()>() \
         { \
             return __reflection::BHW_CONCAT(__, var_name); \
         } \
         template <> \
-        inline constexpr bool IsRegistered<class_name>() \
+        inline bool IsRegistered<class_name>() \
         { \
             return true; \
         } \
         template <> \
-        inline constexpr const std::string_view& GetSourceLocation<TypeHash<class_name>()>() \
+        inline const std::string_view& GetSourceLocation<TypeHash<class_name>()>() \
         { \
             return __reflection::BHW_CONCAT(__, var_name).SourceLocation; \
         } \
     }
 
-#define BHW_REFLECT(class_name, ...) BHW_REFLECT_INTERNAL(class_name, __COUNTER__, __VA_ARGS__)
+#define BHW_REFLECT(class_name, ...) BHW_REFLECT_INTERNAL(class_name, __COUNTER__, ##__VA_ARGS__)
 
 #define BHW_REFLECT_MEMBERS_INTERNAL(class_name, var_name, ...) \
     namespace BHW \
@@ -47,7 +47,7 @@
             inline static const auto BHW_CONCAT(__, var_name) = MakeMembers<class_name>(__VA_ARGS__); \
         } \
         template <> \
-        inline constexpr auto GetMembers<TypeHash<class_name>()>() \
+        inline auto GetMembers<TypeHash<class_name>()>() \
         { \
             return __reflection::BHW_CONCAT(__, var_name); \
         } \

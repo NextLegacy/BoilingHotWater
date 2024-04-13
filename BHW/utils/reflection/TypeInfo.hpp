@@ -24,7 +24,7 @@ namespace BHW
         const std::unordered_map<uint64_t, const TypeInfo&> InheritedClasses;
               std::unordered_map<uint64_t, const TypeInfo&> DerivedClasses  ;
 
-    private:
+    public: // private > public; but cant use friend function because of some partial specialization error when using clang
         TypeInfo(
             const BHW::Type& type,
             const std::string_view& sourceLocation,
@@ -33,8 +33,8 @@ namespace BHW
         {
         }
 
-        template <typename TClass, typename ...TInheritedClasses>
-        friend constexpr const TypeInfo& __reflection::MakeTypeInfo<TClass, TInheritedClasses...>(const std::string_view& sourceLocation);
+        //template <typename TClass, typename ...TInheritedClasses>
+        //friend constexpr const TypeInfo& __reflection::MakeTypeInfo<TClass, TInheritedClasses...>(const std::string_view& sourceLocation);
     };
 
     namespace __reflection
