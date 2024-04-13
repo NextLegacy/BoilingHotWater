@@ -8,4 +8,4 @@ target_include_directories(BoilingHotWater PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 
-add_library(BoilingHotWater::BoilingHotWater ALIAS BoilingHotWater)
+set_target_properties(BoilingHotWater PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
