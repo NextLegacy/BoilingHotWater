@@ -2,6 +2,9 @@
 
 #include <fstream>
 #include <filesystem>
+
+#include <shobjidl.h>
+#include <shobjidl_core.h>
 #include "BHW/utils/Debug.hpp"
 
 namespace BHW

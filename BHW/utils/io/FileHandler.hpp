@@ -5,9 +5,7 @@
 
 #ifdef _WIN32
 #include <windows.h>
-#include <shobjidl.h>
-#include <shobjidl_core.h>
-#include <comdef.h>
+//#include <comdef.h>
 #undef CreateFile
 #endif
 
